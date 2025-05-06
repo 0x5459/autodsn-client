@@ -1,0 +1,33 @@
+[package]
+name = "autodsn-client"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+subspace-networking = { git = "https://github.com/autonomys/subspace.git", rev = "58346e8bc7ff2ba1ed836d54921d016c9865cdf8" }
+subspace-core-primitives = { git = "https://github.com/autonomys/subspace.git", rev = "58346e8bc7ff2ba1ed836d54921d016c9865cdf8" }
+subspace-rpc-primitives = { git = "https://github.com/autonomys/subspace.git", rev = "58346e8bc7ff2ba1ed836d54921d016c9865cdf8" }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "time"] }
+time = { version = "0.3.41", features = ["local-offset", "formatting"] }
+anyhow = "1"
+thiserror = "2"
+clap = { version = "4.5.37", features = ["derive", "env"] }
+tokio = { version = "1.40.0", features = [
+    "macros",
+    "parking_lot",
+    "rt-multi-thread",
+    "signal",
+    "sync",
+    "time",
+] }
+futures = "0.3.31"
+hex = "0.4.3"
+schnorrkel = "0.11.4"
+zeroize = "1.8.1"
+parity-scale-codec = "3.6.12"
+substrate-bip39 = "0.6.0"
+rand = "0.9.1"
+jsonrpsee = { version = "0.25.1", features = ["ws-client"] }
+rustyline = { version = "15.0.0", features = ["with-sqlite-history"] }
+async-lock = "3.4.0"
