@@ -1,4 +1,4 @@
-use std::{path::PathBuf, pin::pin, sync::Arc};
+use std::{path::PathBuf, pin::pin, sync::Arc, time::Instant};
 
 use anyhow::{Result, anyhow};
 use async_lock::Semaphore;
@@ -136,11 +136,13 @@ async fn run_interactive_cli(node: Node) -> Result<()> {
                         println!("Invalid piece index");
                         continue;
                     };
+                    let now = Instant::now();
                     let piece = piece_provider
                         .get_piece_from_archival_storage(PieceIndex::from(piece_index), 100)
                         .await;
+                    let elapsed = now.elapsed();
                     match piece {
-                        Some(_) => println!("Piece {piece_index} downloaded."),
+                        Some(_) => println!("Piece {piece_index} downloaded: elapsed: {elapsed:?}."),
                         None => println!("No piece found for index {piece_index}"),
                     }
                 }
